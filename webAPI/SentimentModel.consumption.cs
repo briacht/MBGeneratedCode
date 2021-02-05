@@ -3,7 +3,8 @@ using Microsoft.ML.Data;
 using Microsoft.Extensions.ML;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace MBtoWebAppWithWebAPI
+namespace MBGeneratedCode
+
 {
     public partial class SentimentModel
     {
@@ -49,6 +50,7 @@ namespace MBtoWebAppWithWebAPI
             return _predEngine.Predict(input);
         }
     }
+    
     public static class SentimentModelExtensions
     {
         public static void AddSentimentModel(this IServiceCollection services)
@@ -58,5 +60,4 @@ namespace MBtoWebAppWithWebAPI
             services.AddSingleton<SentimentModel>();
         }
     }
-}
 }

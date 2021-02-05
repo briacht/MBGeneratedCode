@@ -1,0 +1,5 @@
+C:\Users\brachtma\source\repos\MBGeneratedCode\webAPI\obj\Debug\netcoreapp3.1\webAPI.csprojAssemblyReference.cache
+C:\Users\brachtma\source\repos\MBGeneratedCode\webAPI\obj\Debug\netcoreapp3.1\webAPI.AssemblyInfoInputs.cache
+C:\Users\brachtma\source\repos\MBGeneratedCode\webAPI\obj\Debug\netcoreapp3.1\webAPI.AssemblyInfo.cs
+C:\Users\brachtma\source\repos\MBGeneratedCode\webAPI\obj\Debug\netcoreapp3.1\webAPI.csproj.CoreCompileInputs.cache
+C:\Users\brachtma\source\repos\MBGeneratedCode\webAPI\obj\Debug\netcoreapp3.1\webAPI.MvcApplicationPartsAssemblyInfo.cache
