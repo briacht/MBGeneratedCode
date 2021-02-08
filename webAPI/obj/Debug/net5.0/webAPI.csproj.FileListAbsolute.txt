@@ -37,3 +37,4 @@ C:\Users\brachtma\source\repos\MBGeneratedCode\webAPI\obj\Debug\net5.0\webAPI.dl
 C:\Users\brachtma\source\repos\MBGeneratedCode\webAPI\obj\Debug\net5.0\ref\webAPI.dll
 C:\Users\brachtma\source\repos\MBGeneratedCode\webAPI\obj\Debug\net5.0\webAPI.pdb
 C:\Users\brachtma\source\repos\MBGeneratedCode\webAPI\obj\Debug\net5.0\webAPI.genruntimeconfig.cache
+C:\Users\brachtma\source\repos\MBGeneratedCode\webAPI\bin\Debug\net5.0\Microsoft.ML.dll
