@@ -2,6 +2,11 @@
 using Microsoft.ML.Data;
 using Microsoft.Extensions.ML;
 using Microsoft.Extensions.DependencyInjection;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System;
+using System.Net.Http.Json;
+using System.Text.Json;
 
 namespace MBGeneratedCode
 
@@ -49,6 +54,8 @@ namespace MBGeneratedCode
         {
             return _predEngine.Predict(input);
         }
+
+
     }
     
     public static class SentimentModelExtensions
@@ -56,7 +63,7 @@ namespace MBGeneratedCode
         public static void AddSentimentModel(this IServiceCollection services)
         {
             services.AddPredictionEnginePool<SentimentModel.ModelInput, SentimentModel.ModelOutput>()
-                .FromUri("https://github.com/dotnet/samples/raw/master/machine-learning/models/sentimentanalysis/sentiment_model.zip");
+                .FromFile("SentimentModel.zip");
             services.AddSingleton<SentimentModel>();
         }
     }
