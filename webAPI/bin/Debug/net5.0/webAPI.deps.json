@@ -9,15 +9,7 @@
       "DEBUG",
       "NET",
       "NET5_0",
-      "NETCOREAPP",
-      "NET5_0_OR_GREATER",
-      "NETCOREAPP1_0_OR_GREATER",
-      "NETCOREAPP1_1_OR_GREATER",
-      "NETCOREAPP2_0_OR_GREATER",
-      "NETCOREAPP2_1_OR_GREATER",
-      "NETCOREAPP2_2_OR_GREATER",
-      "NETCOREAPP3_0_OR_GREATER",
-      "NETCOREAPP3_1_OR_GREATER"
+      "NETCOREAPP"
     ],
     "languageVersion": "9.0",
     "platform": "",
@@ -35,6 +27,7 @@
         "dependencies": {
           "Microsoft.Extensions.ML": "1.5.4",
           "Microsoft.ML": "1.5.4",
+          "Microsoft.ML.FastTree": "1.5.4",
           "Microsoft.AspNetCore.Antiforgery": "5.0.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "5.0.0.0",
           "Microsoft.AspNetCore.Authentication.Cookies": "5.0.0.0",
@@ -499,6 +492,42 @@
         },
         "compile": {
           "lib/netstandard2.0/Microsoft.ML.DataView.dll": {}
+        }
+      },
+      "Microsoft.ML.FastTree/1.5.4": {
+        "dependencies": {
+          "Microsoft.ML": "1.5.4"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.ML.FastTree.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.500.420.61711"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/linux-x64/native/libFastTreeNative.so": {
+            "rid": "linux-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/osx-x64/native/libFastTreeNative.dylib": {
+            "rid": "osx-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x64/native/FastTreeNative.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "0.1700.420.61711"
+          },
+          "runtimes/win-x86/native/FastTreeNative.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "0.1700.420.61711"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.ML.FastTree.dll": {}
         }
       },
       "Microsoft.NETCore.Platforms/1.1.0": {},
@@ -3103,6 +3132,13 @@
       "sha512": "sha512-vg3SvbFCOQtof5r/J1BCQ0p+zN6436GppWVIwodsP6DkKXRz1rpJUT1gTPSRGsjTIJoBDEw/cL7ei+GWZ7YZFw==",
       "path": "microsoft.ml.dataview/1.5.4",
       "hashPath": "microsoft.ml.dataview.1.5.4.nupkg.sha512"
+    },
+    "Microsoft.ML.FastTree/1.5.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-yw3Gx7QN5QTEkC5upaSAGboAz9G45S2GUodUI3F70/qcWyXNeMcjmqkWV2jAbiQaLe/3D7sXxWfGAwmtGiwmGA==",
+      "path": "microsoft.ml.fasttree/1.5.4",
+      "hashPath": "microsoft.ml.fasttree.1.5.4.nupkg.sha512"
     },
     "Microsoft.NETCore.Platforms/1.1.0": {
       "type": "package",
