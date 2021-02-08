@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using webApp.Services;
 
 namespace webApp
 {
@@ -24,7 +25,7 @@ namespace webApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
-            services.AddHttpClient();
+            services.AddSentimentModelAPI();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

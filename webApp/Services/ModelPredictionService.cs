@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace webApp.Services
@@ -17,6 +18,7 @@ namespace webApp.Services
 
     public class ModelOutput
     {
+        [JsonPropertyName("prediction")]
         public string Prediction { get; set; }
         public float[] Score { get; set; }
     }
@@ -30,9 +32,9 @@ namespace webApp.Services
             _client = client;
         }
 
-        public async Task<ModelOutput> PostPrediction(ModelInput input)
+        public async Task<ModelOutput> PostPrediction(string comment)
         {
-            var response = await _client.PostAsJsonAsync<ModelInput>("/predict", input);
+            var response = await _client.PostAsJsonAsync<ModelInput>("/predict", new ModelInput {Comment=comment});
             response.EnsureSuccessStatusCode();
 
             using var responseStream = await response.Content.ReadAsStreamAsync();
@@ -45,7 +47,7 @@ namespace webApp.Services
         {
             services.AddHttpClient<SentimentModelAPIService>(config =>
             {
-                config.BaseAddress = new Uri("https://localhost:44349/");
+                config.BaseAddress = new Uri("http://localhost:57311/");
                 config.DefaultRequestHeaders.Add("Accept", "application/json");
                 config.DefaultRequestHeaders.Add("User-Agent", "SentimentModel");
             });
