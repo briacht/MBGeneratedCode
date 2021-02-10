@@ -5848,25 +5848,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\luquinta.REDMOND\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\brachtma\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Dev\\MBGeneratedCode\\webAPI\\webAPI.csproj",
+      "projectUniqueName": "C:\\Users\\brachtma\\source\\repos\\MBGeneratedCode\\webAPI\\webAPI.csproj",
       "projectName": "webAPI",
-      "projectPath": "C:\\Dev\\MBGeneratedCode\\webAPI\\webAPI.csproj",
-      "packagesPath": "C:\\Users\\luquinta.REDMOND\\.nuget\\packages\\",
-      "outputPath": "C:\\Dev\\MBGeneratedCode\\webAPI\\obj\\",
+      "projectPath": "C:\\Users\\brachtma\\source\\repos\\MBGeneratedCode\\webAPI\\webAPI.csproj",
+      "packagesPath": "C:\\Users\\brachtma\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\brachtma\\source\\repos\\MBGeneratedCode\\webAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\luquinta.REDMOND\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\brachtma\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
@@ -5875,11 +5873,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Users\\luquinta.REDMOND\\Downloads": {},
-        "https://api.nuget.org/v3/index.json": {},
-        "https://dotnet.myget.org/F/dotnet-corefxlab/api/v3/index.json": {},
-        "https://f.feedz.io/featherhttp/framework/nuget/index.json": {},
-        "https://pkgs.dev.azure.com/dnceng/public/_packaging/MachineLearning/nuget/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net5.0": {
@@ -5928,7 +5922,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
       }
     }
   }
