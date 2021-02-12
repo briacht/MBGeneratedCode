@@ -14,6 +14,7 @@ namespace webApp.Pages
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
+        
         private readonly SentimentModelAPIService _sentimentModelService;
 
         [BindProperty]
