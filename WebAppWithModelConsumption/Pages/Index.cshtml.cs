@@ -13,18 +13,18 @@ namespace WebAppWithModelConsumption.Pages
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
-        private readonly SentimentModelService _sentimentModelService;
+        private readonly SentimentModel _sentimentModel;
 
         [BindProperty]
-        public string Comment { get; set; }
+        public string _comment { get; set; }
 
         public ModelOutput ModelOutput;
         public bool ShowPrediction { get; set; } = false;
 
-        public IndexModel(ILogger<IndexModel> logger, SentimentModelService sentimentModelService)
+        public IndexModel(ILogger<IndexModel> logger, SentimentModel sentimentModel)
         {
             _logger = logger;
-            _sentimentModelService = sentimentModelService;
+            _sentimentModel = sentimentModel;
         }
 
         public void OnGet()
@@ -34,9 +34,13 @@ namespace WebAppWithModelConsumption.Pages
 
         public async Task OnPost()
         {
+            ModelInput input = new ModelInput
+            {
+                Comment = _comment
+            };
             try
             {
-                ModelOutput = await _sentimentModelService.PostPrediction(Comment);
+                ModelOutput = _sentimentModel.Predict(input);
                 ShowPrediction = true;
             }
             catch (HttpRequestException)

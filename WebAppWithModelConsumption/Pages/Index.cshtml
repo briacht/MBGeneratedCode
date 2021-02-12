@@ -10,14 +10,14 @@
 
     <form method="post" enctype="multipart/form-data">
         <div class="form-group">
-            <label asp-for="Comment"></label>
-            <input type="text" class="form-control" asp-for="Comment" />
+            <label asp-for="_comment">Comment</label>
+            <input type="text" class="form-control" asp-for="_comment" />
         </div>
-        <button class="btn btn-secondary" type="submit">Predict Price</button>
+        <button class="btn btn-secondary" type="submit">Predict</button>
         @if (Model.ShowPrediction)
         {
             <div>
-                <h4>Sentiment @Model.ModelOutput.Prediction</h4>
+                <h4>Sentiment: @Model.ModelOutput.Prediction</h4>
             </div>
         }
     </form>
