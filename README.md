@@ -13,8 +13,9 @@ User has an existing web project and wants model and consumption to happen in th
  1. User right-clicks on their web app project in Solution Explorer and hits Add > New Item.
  2. In the Add New Item dialog, user selects Machine Learning Model (ML.NET) and names it SentimentModel.
  3. A new file is added to the project called "SentimentModel.mbconfig" and the Model Builder UI "wizard" opens in a new tool window.
- 4. User goes through the steps for training a sentiment analysis (Text classification) model using Model Builder. After training, the model and [consumption code](https://github.com/briacht/MBGeneratedCode/blob/main/webAPI/SentimentModel.consumption.cs) are added as code-behind the SentimentModel.config file.
+ 4. User goes through the steps for training a sentiment analysis (Text classification) model using Model Builder. After training, the model and [consumption code](https://github.com/briacht/MBGeneratedCode/blob/main/WebAppWithModelConsumption/SentimentModel.consumption.cs) are added as code-behind the SentimentModel.config file.
  5. User is presented with links to docs to see example of how to implement / consume model in their web app. They also have the option to add a sample web app project which utilizes their model.
+ Ex: [https://github.com/briacht/MBGeneratedCode/blob/main/WebAppWithModelConsumption/Startup.cs#L27](Startup.cs), [https://github.com/briacht/MBGeneratedCode/blob/main/WebAppWithModelConsumption/Pages/Index.cshtml](Index.cshtml), [https://github.com/briacht/MBGeneratedCode/blob/main/WebAppWithModelConsumption/Pages/Index.cshtml.cs](Index.cshtml.cs)
  
  ### 2. Web app via new web API
 
