@@ -47,7 +47,7 @@ namespace webApp.Services
         {
             services.AddHttpClient<SentimentModelAPIService>(config =>
             {
-                config.BaseAddress = new Uri("http://localhost:57311/");
+                config.BaseAddress = new Uri("http://localhost:5000/");
                 config.DefaultRequestHeaders.Add("Accept", "application/json");
                 config.DefaultRequestHeaders.Add("User-Agent", "SentimentModel");
             });

@@ -5,17 +5,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Text.Json;
 using System.Threading.Tasks;
-using webApp.Services;
+using static WebAppWithModelConsumption.SentimentModel;
 
-namespace webApp.Pages
+namespace WebAppWithModelConsumption.Pages
 {
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
-        
-        private readonly SentimentModelAPIService _sentimentModelService;
+        private readonly SentimentModelService _sentimentModelService;
 
         [BindProperty]
         public string Comment { get; set; }
@@ -23,9 +21,7 @@ namespace webApp.Pages
         public ModelOutput ModelOutput;
         public bool ShowPrediction { get; set; } = false;
 
-        public IndexModel(
-            ILogger<IndexModel> logger,
-            SentimentModelAPIService sentimentModelService)
+        public IndexModel(ILogger<IndexModel> logger, SentimentModelService sentimentModelService)
         {
             _logger = logger;
             _sentimentModelService = sentimentModelService;
@@ -43,7 +39,7 @@ namespace webApp.Pages
                 ModelOutput = await _sentimentModelService.PostPrediction(Comment);
                 ShowPrediction = true;
             }
-            catch(HttpRequestException)
+            catch (HttpRequestException)
             {
                 ModelOutput = new ModelOutput { Prediction = "" };
             }
