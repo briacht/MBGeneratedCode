@@ -19,7 +19,7 @@ namespace MBGeneratedCode
             WebHost.CreateDefaultBuilder()
                 .ConfigureServices(services => {
                     // Register SentimentModel
-                    services.AddSentimentModel();
+                    SentimentModel.RegisterModel(services);
                 })
                 .Configure(options => {
                     options.UseRouting();

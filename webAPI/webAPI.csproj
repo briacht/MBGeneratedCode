@@ -10,5 +10,17 @@
     <PackageReference Include="Microsoft.ML.FastTree" Version="1.5.4" />
   </ItemGroup>
 
+  <ItemGroup Label="SentimentModel">
+    <None Include="SentimentModel.consumption.cs">
+      <DependentUpon>SentimentModel.mbconfig</DependentUpon>
+    </None>
+    <None Include="SentimentModel.training.cs">
+      <DependentUpon>SentimentModel.mbconfig</DependentUpon>
+    </None>
+    <None Include="SentimentModel.zip">
+      <DependentUpon>SentimentModel.mbconfig</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 
 </Project>
