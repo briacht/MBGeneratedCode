@@ -18,8 +18,9 @@ namespace MBGeneratedCode
             //Configuration
             WebHost.CreateDefaultBuilder()
                 .ConfigureServices(services => {
-                    // Register SentimentModel
-                    SentimentModel.RegisterModel(services);
+                    // Register Prediction Engine Pool and SentimentModel
+                    services.AddPredictionEnginePool<SentimentModel.ModelInput, SentimentModel.ModelOutput>().FromFile("SentimentModel.zip");
+                    services.AddSingleton<SentimentModel>();
                 })
                 .Configure(options => {
                     options.UseRouting();

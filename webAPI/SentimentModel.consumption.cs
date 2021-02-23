@@ -82,13 +82,5 @@ namespace MBGeneratedCode
                 return this._predictionEnginePool.Predict(input);
             }
         }
-
-        public static void RegisterModel(IServiceCollection services, string modelPath = DefaultModelPath)
-        {
-            var fullModelPath = Path.GetFullPath(modelPath);
-            services.AddPredictionEnginePool<SentimentModel.ModelInput, SentimentModel.ModelOutput>()
-                .FromFile(fullModelPath);
-            services.AddSingleton<SentimentModel>();
-        }
     }
 }
