@@ -71,7 +71,14 @@ namespace WebAppWithModelConsumption
 
         public ModelOutput Predict(ModelInput input)
         {
-            return _predictionEnginePool.Predict(input);
+            if (this._predictionEngine != null)
+            {
+                return this._predictionEngine.Predict(input);
+            }
+            else
+            {
+                return this._predictionEnginePool.Predict(input);
+            }
         }
 
         public static void RegisterModel(IServiceCollection services, string modelPath = DefaultModelPath)
