@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.ML;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,8 @@ namespace WebAppWithModelConsumption
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
-            SentimentModel.RegisterModel(services);
+            services.AddPredictionEnginePool<SentimentModel.ModelInput, SentimentModel.ModelOutput>().FromFile("SentimentModel.zip");
+            services.AddSingleton<SentimentModel>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
