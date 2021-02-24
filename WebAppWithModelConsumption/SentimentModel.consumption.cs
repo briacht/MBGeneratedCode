@@ -11,7 +11,7 @@ using Microsoft.ML;
 namespace WebAppWithModelConsumption
 
 {
-    public partial class SentimentModel
+    public abstract partial class SentimentModel
     {
         /// <summary>
         /// model input class for SentimentModel.
@@ -43,10 +43,7 @@ namespace WebAppWithModelConsumption
 
         #endregion
 
-        private readonly PredictionEngine<ModelInput, ModelOutput> _predictionEngine;
-        private readonly PredictionEnginePool<ModelInput, ModelOutput> _predictionEnginePool;
-
-        public SentimentModel(string modelPath)
+        public static SentimentModel Create(string modelPath)
         {
             MLContext mlContext = new MLContext();
 
@@ -55,29 +52,49 @@ namespace WebAppWithModelConsumption
             ITransformer mlModel = mlContext.Model.Load(fullModelPath, out var modelInputSchema);
             var predictionEngine = mlContext.Model.CreatePredictionEngine<ModelInput, ModelOutput>(mlModel);
 
-            this._predictionEngine = predictionEngine;
+            return new SentimentModelPredictionEngine(predictionEngine);
         }
 
-        public SentimentModel(PredictionEngine<SentimentModel.ModelInput, SentimentModel.ModelOutput> predictionEngine)
+        public static SentimentModel Create(PredictionEngine<SentimentModel.ModelInput, SentimentModel.ModelOutput> predictionEngine)
         {
-            this._predictionEngine = predictionEngine;
+            return new SentimentModelPredictionEngine(predictionEngine);
         }
 
-        public SentimentModel(PredictionEnginePool<SentimentModel.ModelInput, SentimentModel.ModelOutput> predictionEnginePool)
+        public static SentimentModel Create(PredictionEnginePool<SentimentModel.ModelInput, SentimentModel.ModelOutput> predictionEnginePool)
         {
-            this._predictionEnginePool = predictionEnginePool;
+            return new SentimentModelPredictionEnginePool(predictionEnginePool);
         }
 
-        public ModelOutput Predict(ModelInput input)
+
+        public abstract ModelOutput Predict(ModelInput input);
+
+        class SentimentModelPredictionEngine : SentimentModel
         {
-            if (this._predictionEngine != null)
+            private readonly PredictionEngine<ModelInput, ModelOutput> _predictionEngine;
+            public SentimentModelPredictionEngine(PredictionEngine<SentimentModel.ModelInput, SentimentModel.ModelOutput> predictionEngine)
+            {
+                this._predictionEngine = predictionEngine;
+            }
+
+            public override ModelOutput Predict(ModelInput input)
             {
                 return this._predictionEngine.Predict(input);
             }
-            else
+        }
+
+        class SentimentModelPredictionEnginePool : SentimentModel
+        {
+            private readonly PredictionEnginePool<ModelInput, ModelOutput> _predictionEnginePool;
+            public SentimentModelPredictionEnginePool(PredictionEnginePool<SentimentModel.ModelInput, SentimentModel.ModelOutput> predictionEnginePool)
+            {
+                this._predictionEnginePool = predictionEnginePool;
+            }
+
+            public override ModelOutput Predict(ModelInput input)
             {
                 return this._predictionEnginePool.Predict(input);
             }
         }
     }
+
 }
