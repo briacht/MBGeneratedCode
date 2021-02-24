@@ -22,7 +22,7 @@ namespace MBGeneratedCode
                     services.AddPredictionEnginePool<SentimentModel.ModelInput, SentimentModel.ModelOutput>().FromFile("SentimentModel.zip");
                     services.AddSingleton<SentimentModel>(serviceProvider => {
                         var predictionEnginePool = serviceProvider.GetService<PredictionEnginePool<SentimentModel.ModelInput, SentimentModel.ModelOutput>>();
-                        return new SentimentModel(predictionEnginePool);
+                        return SentimentModel.Create(predictionEnginePool);
                     });
                 })
                 .Configure(options => {
