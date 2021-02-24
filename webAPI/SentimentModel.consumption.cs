@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System;
 using System.Net.Http.Json;
 using System.Text.Json;
+using Microsoft.ML;
+using System.IO;
 
 namespace MBGeneratedCode
 
@@ -43,28 +45,42 @@ namespace MBGeneratedCode
 
         #endregion
 
-        private readonly PredictionEnginePool<ModelInput, ModelOutput> _predEngine;
+        private const string DefaultModelPath = "SentimentModel.zip";
+        private readonly PredictionEngine<ModelInput, ModelOutput> _predictionEngine;
+        private readonly PredictionEnginePool<ModelInput, ModelOutput> _predictionEnginePool;
 
-        public SentimentModel(PredictionEnginePool<ModelInput, ModelOutput> predEngine)
+        public SentimentModel(string modelPath = DefaultModelPath)
         {
-            _predEngine = predEngine;
+            MLContext mlContext = new MLContext();
+
+            // Load model & create prediction engine
+            var fullModelPath = Path.GetFullPath(modelPath);
+            ITransformer mlModel = mlContext.Model.Load(fullModelPath, out var modelInputSchema);
+            var predictionEngine = mlContext.Model.CreatePredictionEngine<ModelInput, ModelOutput>(mlModel);
+
+            this._predictionEngine = predictionEngine;
+        }
+
+        public SentimentModel(PredictionEngine<SentimentModel.ModelInput, SentimentModel.ModelOutput> predictionEngine)
+        {
+            this._predictionEngine = predictionEngine;
+        }
+
+        public SentimentModel(PredictionEnginePool<SentimentModel.ModelInput, SentimentModel.ModelOutput> predictionEnginePool)
+        {
+            this._predictionEnginePool = predictionEnginePool;
         }
 
         public ModelOutput Predict(ModelInput input)
         {
-            return _predEngine.Predict(input);
-        }
-
-
-    }
-    
-    public static class SentimentModelExtensions
-    {
-        public static void AddSentimentModel(this IServiceCollection services)
-        {
-            services.AddPredictionEnginePool<SentimentModel.ModelInput, SentimentModel.ModelOutput>()
-                .FromFile("SentimentModel.zip");
-            services.AddSingleton<SentimentModel>();
+            if (this._predictionEngine != null)
+            {
+                return this._predictionEngine.Predict(input);
+            }
+            else
+            {
+                return this._predictionEnginePool.Predict(input);
+            }
         }
     }
 }
