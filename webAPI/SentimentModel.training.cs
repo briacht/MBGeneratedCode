@@ -8,7 +8,7 @@ using Microsoft.ML.Data;
 using Microsoft.ML.Trainers;
 using Microsoft.ML;
 
-namespace MBtoWebAppWithWebAPI
+namespace webAPI
 {
     public partial class SentimentModel
     {
@@ -28,11 +28,11 @@ namespace MBtoWebAppWithWebAPI
         public static IEstimator<ITransformer> BuildPipeline(MLContext mlContext)
         {
             // Data process configuration with pipeline data transformations
-                        var pipeline = mlContext.Transforms.Text.FeaturizeText(@"Comment", @"Comment")                  
-                                        .Append(mlContext.Transforms.Concatenate(@"$_FEATURES", @"Comment"))                  
-                                        .Append(mlContext.Transforms.Conversion.MapValueToKey(@"Sentiment", @"Sentiment"))                  
-                                        .Append(mlContext.Transforms.NormalizeMinMax(@"$_FEATURES", @"$_FEATURES"))
-                                        .Append(mlContext.MulticlassClassification.Trainers.OneVersusAll(binaryEstimator: mlContext.BinaryClassification.Trainers.LbfgsLogisticRegression(labelColumnName: @"Sentiment", featureColumnName: @"$_FEATURES"), labelColumnName: @"Sentiment"))
+                        var pipeline = mlContext.Transforms.Conversion.MapValueToKey(@"Sentiment", @"Sentiment")                  
+                                        .Append(mlContext.Transforms.Text.FeaturizeText(@"Comment_tf", @"Comment"))                  
+                                        .Append(mlContext.Transforms.CopyColumns(@"Features", @"Comment_tf"))                  
+                                        .Append(mlContext.Transforms.NormalizeMinMax(@"Features", @"Features"))                  
+                                        .Append(mlContext.BinaryClassification.Trainers.AveragedPerceptron(labelColumnName:@"Sentiment"))                  
                                         .Append(mlContext.Transforms.Conversion.MapKeyToValue(@"PredictedLabel", @"PredictedLabel"))            ;
 
             return pipeline;
