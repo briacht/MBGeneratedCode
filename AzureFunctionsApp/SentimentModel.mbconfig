@@ -1,0 +1,81 @@
+{
+  "TrainingConfigurationVersion": 0,
+  "TrainingTime": 15,
+  "Scenario": {
+    "ScenarioType": "Classification"
+  },
+  "DataSource": {
+    "DataSourceType": "TabularFile",
+    "FileName": "C:\\Users\\brachtma\\Desktop\\Datasets\\yelp_labelled.txt",
+    "Delimiter": "\t",
+    "DecimalMarker": ".",
+    "HasHeader": true,
+    "ColumnProperties": [
+      {
+        "ColumnName": "Comment",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "String",
+        "IsCategorical": false
+      },
+      {
+        "ColumnName": "Sentiment",
+        "ColumnPurpose": "Label",
+        "ColumnDataFormat": "String",
+        "IsCategorical": true
+      }
+    ]
+  },
+  "Environment": {
+    "EnvironmentType": "LocalCPU"
+  },
+  "Artifact": {
+    "Type": "LocalArtifact",
+    "MLNetModelPath": "C:\\Users\\brachtma\\source\\repos\\MBGeneratedCode\\AzureFunctionsApp\\SentimentModel.zip"
+  },
+  "RunHistory": {
+    "Trials": [
+      {
+        "TrainerName": "LbfgsMaximumEntropyMulti",
+        "Score": 0.84936575052854124,
+        "RuntimeInSeconds": 3.3310000896453857
+      },
+      {
+        "TrainerName": "LbfgsLogisticRegressionOva",
+        "Score": 0.837737843551797,
+        "RuntimeInSeconds": 1.0549999475479126
+      },
+      {
+        "TrainerName": "LbfgsMaximumEntropyMulti",
+        "Score": 0.82610993657505283,
+        "RuntimeInSeconds": 0.64800000190734863
+      },
+      {
+        "TrainerName": "LbfgsMaximumEntropyMulti",
+        "Score": 0.79149048625792817,
+        "RuntimeInSeconds": 0.652999997138977
+      },
+      {
+        "TrainerName": "LbfgsLogisticRegressionOva",
+        "Score": 0.72119450317124734,
+        "RuntimeInSeconds": 0.82999998331069946
+      },
+      {
+        "TrainerName": "FastTreeOva",
+        "Score": 0.66728329809725162,
+        "RuntimeInSeconds": 3.23799991607666
+      },
+      {
+        "TrainerName": "FastForestOva",
+        "Score": 0.65512684989429171,
+        "RuntimeInSeconds": 1.0299999713897705
+      },
+      {
+        "TrainerName": "SdcaMaximumEntropyMulti",
+        "Score": 0.5,
+        "RuntimeInSeconds": 0.87599998712539673
+      }
+    ],
+    "Pipeline": "[{\"EstimatorType\":\"FeaturizeText\",\"Name\":\"0_0\",\"Inputs\":[\"Comment\"],\"Outputs\":[\"Comment\"]},{\"EstimatorType\":\"Concatenate\",\"Name\":\"1_0\",\"Inputs\":[\"Comment\"],\"Outputs\":[\"$_FEATURES\"]},{\"EstimatorType\":\"NormalizeMinMax\",\"Name\":\"2_0\",\"Inputs\":[\"$_FEATURES\"],\"Outputs\":[\"$_FEATURES\"]},{\"EstimatorType\":\"MapValueToKey\",\"Name\":\"3_0\",\"Inputs\":[\"Sentiment\"],\"Outputs\":[\"Sentiment\"]},{\"LabelColumnName\":\"Sentiment\",\"FeatureColumnName\":\"$_FEATURES\",\"L1Regularization\":\"4.53754334983703\",\"L2Regularization\":\"3.82157502773772\",\"OptimizationTolerance\":\"9.60713462533089E-07\",\"HistorySize\":\"88\",\"EnforceNonNegativity\":\"true\",\"EstimatorType\":\"LbfgsMaximumEntropyMulti\",\"Name\":\"4_3\",\"Inputs\":[\"Sentiment\"],\"Outputs\":[\"$_FEATURES\"]},{\"EstimatorType\":\"MapKeyToValue\",\"Name\":\"5_0\",\"Inputs\":[\"PredictedLabel\"],\"Outputs\":[\"PredictedLabel\"]}]",
+    "MetricName": "MicroAccuracy"
+  }
+}
