@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.ML;
+using webAPI;
 
 namespace MBGeneratedCode
 {
@@ -20,10 +21,6 @@ namespace MBGeneratedCode
                 .ConfigureServices(services => {
                     // Register Prediction Engine Pool and SentimentModel
                     services.AddPredictionEnginePool<SentimentModel.ModelInput, SentimentModel.ModelOutput>().FromFile("SentimentModel.zip");
-                    services.AddSingleton<SentimentModel>(serviceProvider => {
-                        var predictionEnginePool = serviceProvider.GetService<PredictionEnginePool<SentimentModel.ModelInput, SentimentModel.ModelOutput>>();
-                        return SentimentModel.Create(predictionEnginePool);
-                    });
                 })
                 .Configure(options => {
                     options.UseRouting();
@@ -39,14 +36,14 @@ namespace MBGeneratedCode
         static async Task PredictHandler(HttpContext http)
         {
             // Get PredictionEnginePool service
-            var sentimentModel = http.RequestServices.GetRequiredService<SentimentModel>();
+            var predictionEnginePool = http.RequestServices.GetRequiredService<PredictionEnginePool<SentimentModel.ModelInput, SentimentModel.ModelOutput>>();
 
             // Deserialize HTTP request JSON body
             var body = http.Request.Body as Stream;
             var input = await JsonSerializer.DeserializeAsync<SentimentModel.ModelInput>(body);
 
             // Predict
-            var prediction = sentimentModel.Predict(input);
+            var prediction = predictionEnginePool.Predict(input);
 
             // Return prediction as response
             await http.Response.WriteAsJsonAsync(prediction);
